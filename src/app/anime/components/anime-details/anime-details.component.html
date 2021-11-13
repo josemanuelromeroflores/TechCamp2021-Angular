@@ -1,0 +1,24 @@
+<div *ngIf="anime">
+
+    <div style="margin-top: 1em;">
+        <button [routerLink]="['/anime']" [queryParams]="{text: textSearch}" 
+            class="inline" style="margin-right: .5em;" type="submit">Volver</button>
+        <button class="inline" (click)="addToCart(anime)">Añadir al carrito</button>
+    </div>
+
+    <div>
+        <h3>{{ anime.title }}</h3>
+    </div>
+
+    <div class="img" style="margin-top: 1em;">
+        <img src="{{anime.image_url}}" alt="{{anime.title}}"/>
+    </div>
+    
+    <h4>Precio: {{ (anime.episodes * 1.5) | currency: 'EUR' }}</h4>
+    <h4>Episodios: {{ anime.episodes }}</h4>
+    <h4>Punt.: {{ anime.score }} / 10</h4>
+    <h4>Calificación: {{ anime.rated }} </h4>
+    <h6>{{ anime.synopsis }} </h6>
+    <a href="{{ anime.url }}" target="_blank">Accede a mas detalles!</a>
+
+</div>

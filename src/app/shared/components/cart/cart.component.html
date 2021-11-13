@@ -1,0 +1,40 @@
+<h3>Cesta</h3>
+
+<p>
+    <a routerLink="/shipping">Gastos de envío</a>
+</p>
+
+<ng-template [ngIf]="items.length > 0" [ngIfElse]="noItems">
+
+    <div class="cart-item" *ngFor="let item of items">
+        <span class="margin">{{ item.title }}</span>
+        <span>{{ item.price | currency: 'EUR' }}</span>
+    </div>
+
+    <div class="cart-item cart-item-total">
+        <span class="margin">Total</span>
+        <span>{{ total | currency: 'EUR' }}</span>
+    </div>
+
+    <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
+        <div>
+        <label for="name">
+            Name
+        </label>
+        <input id="name" type="text" formControlName="name">
+        </div>
+        <div>
+        <label for="address">
+            Address
+        </label>
+        <input id="address" type="text" formControlName="address">
+        </div>
+        <button class="button" type="submit">Comprar</button>
+    </form>
+</ng-template>
+
+<ng-template #noItems>
+    <div>
+        <h4> No hay productos en la cesta. </h4>
+    </div>
+</ng-template>

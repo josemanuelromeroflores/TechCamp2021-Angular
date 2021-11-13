@@ -1,0 +1,23 @@
+.inline {
+    display: inline;
+}
+
+table {
+    width:100%;
+}
+
+table>thead {
+    background-color: #2b0a3d;
+    font-weight: bold;
+    color: white;
+}
+
+table>tbody {
+    background-color: #9c71b3;
+    color: white;
+}
+
+td {
+    padding: 10px;
+    vertical-align: middle;
+}

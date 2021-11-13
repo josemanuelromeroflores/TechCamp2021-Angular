@@ -1,0 +1,46 @@
+<h3> Juegos </h3>
+
+<form [formGroup]="checkoutForm" (ngSubmit)="searchGames()"
+    style="padding-top: 1em;">
+    <div class="inline" style="padding-right: 1em;">
+      <label for="title">
+        Título contiene
+      </label>
+      <input id="title" type="text" formControlName="title">
+    </div>
+    <button class="button inline" type="submit">Buscar</button>
+</form>
+
+<table mdbTable>
+    <col style="width:60%">
+    <col style="width:30%">
+	<col style="width:10%">
+    <col style="width:10%">
+    <thead class="black white-text">
+        <tr>
+            <th> Título </th>
+            <th> Precio </th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr mdbTableCol *ngFor="let game of games">
+            <td>
+                <a [title]="game.external" style="color: white;"
+                    [routerLink]="['/games', game.gameID]" [queryParams]="{text: titleSearch}">
+                    {{ game.external }}
+                </a>
+            </td>
+            <td style="text-align: center;"></td>
+            <td style="text-align: center;">
+                <game-alerts
+                    [game]="game">
+                </game-alerts>
+            </td>
+            <td style="text-align: center;">
+                <button (click)="addToCart(game)">+</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

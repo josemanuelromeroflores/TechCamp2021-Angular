@@ -1,0 +1,35 @@
+.cart-item {
+    width: auto;
+    min-width: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 16px 32px;
+    margin-bottom: 8px;
+    border-radius: 2px;
+    background-color: #EEEEEE;
+}
+
+.margin {
+    margin-right: 3em;
+}
+    
+.cart-item-total {
+    width: auto;
+    min-width: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 16px 32px;
+    margin-bottom: 8px;
+    border-radius: 2px;
+    background-color: #2b0a3d;
+    font-weight: bold;
+    color: white;
+    align-items: center;
+}
+
+form {
+    text-align: center;
+    margin-top: 2em;
+}

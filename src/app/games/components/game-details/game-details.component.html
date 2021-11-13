@@ -1,0 +1,45 @@
+<div *ngIf="game">
+
+    <div style="margin-top: 1em;">
+        <button [routerLink]="['/games']" [queryParams]="{text: textSearch}" 
+            class="inline" style="margin-right: .5em;" type="submit">Volver</button>
+        <button class="inline" (click)="addToCart(game)">Añadir al carrito</button>
+    </div>
+    
+    <div class="img-float" style="margin-top: 1em;">
+        <img src="{{game.thumb}}" alt="{{game.external}}"/>
+    </div>
+
+    <h3>{{ game.external }}</h3>
+    <h4>Precio histórico: {{ game.cheapest | currency: 'EUR' }}</h4>
+
+    <table mdbTable>
+        <col style="width:50%">
+        <col style="width:30%">
+        <col style="width:20%">
+        <thead class="black white-text">
+            <tr>
+                <th> Tienda </th>
+                <th> Precio </th>
+                <th> </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr mdbTableCol *ngFor="let storeDeal of storeDeals">
+                <td>
+                    <img src="{{'https://www.cheapshark.com/' + storeDeal.banner}}" alt="{{storeDeal.name}}"
+                        style="max-width: 8em;"/>
+                </td>
+                <td style="text-align: center;">{{storeDeal.price | currency: 'EUR'}}</td>
+                <td>
+                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg"
+                        width="40" height="40" viewBox="0 0 120 100">
+                        <rect x="10" y="10" width="100" height="80" rx="20" ry="20" [class.cuadrado-true]="storeDeal.isActive"
+                            [class.cuadrado-false]="!storeDeal.isActive"/>
+                    </svg>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>

@@ -1,0 +1,18 @@
+[
+  {
+    "type": "Hoy",
+    "price": 6.99
+  },
+  {
+    "type": "Premium - 1 día",
+    "price": 4.99
+  },
+  {
+    "type": "Express - 2 días",
+    "price": 4.99
+  },
+  {
+    "type": "Estandar",
+    "price": 0.99
+  }
+]
