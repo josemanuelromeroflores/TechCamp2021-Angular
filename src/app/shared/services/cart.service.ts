@@ -2,13 +2,16 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CartProduct } from '../interfaces/cart-product.interface';
 
+import * as data from "../../../assets/shipping.json";
+import { from, of } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
-
+  
   items: CartProduct[] = [];
   total: number = 0;
+  muestraError :boolean=false;
 
   constructor(private http: HttpClient) { }
 
@@ -27,7 +30,17 @@ export class CartService {
     return this.items;
   }
 
+  changeShowError(){
+    this.muestraError = !this.muestraError;
+  }
+  showErrorFalse(){
+    this.muestraError = false;
+  }
   getTotal() {
     return this.total;
+  }
+
+  getGastosEnvio(){
+    return from(data);
   }
 }

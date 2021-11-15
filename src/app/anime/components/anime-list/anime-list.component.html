@@ -6,12 +6,14 @@
       <label for="title">
         Título contiene
       </label>
-      <input id="title" type="text" formControlName="title">
+      <input id="title" #inputTexto type="text" formControlName="title">
+
+
     </div>
-    <button class="button inline" type="submit">Buscar</button>
+    <button class="button inline" [disabled]="getElemento('title')|| inputTexto.value.length <3" type="submit">Buscar</button>
 </form>
 
-<table mdbTable>
+<table mdbTable- *ngIf="titleSearch && animeList.length>0 ">
     <col style="width:60%">
     <col style="width:30%">
 	<col style="width:10%">
