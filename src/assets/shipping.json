@@ -1,4 +1,4 @@
-[
+ [[
   {
     "type": "Hoy",
     "price": 6.99
@@ -14,5 +14,5 @@
   {
     "type": "Estandar",
     "price": 0.99
-  }
+  }]
 ]

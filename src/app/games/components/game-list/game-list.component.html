@@ -6,12 +6,12 @@
       <label for="title">
         Título contiene
       </label>
-      <input id="title" type="text" formControlName="title">
+      <input id="title"  type="text" formControlName="title">
     </div>
     <button class="button inline" type="submit">Buscar</button>
 </form>
 
-<table mdbTable>
+<table mdbTable *ngIf="titleSearch.length>0">
     <col style="width:60%">
     <col style="width:30%">
 	<col style="width:10%">
@@ -32,7 +32,7 @@
                     {{ game.external }}
                 </a>
             </td>
-            <td style="text-align: center;"></td>
+            <td style="text-align: center;">{{game.cheapest | currency: 'EUR'}}</td>
             <td style="text-align: center;">
                 <game-alerts
                     [game]="game">

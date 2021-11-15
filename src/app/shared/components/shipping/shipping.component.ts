@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { CartService } from '../../services/cart.service';
 
 @Component({
@@ -8,7 +9,13 @@ import { CartService } from '../../services/cart.service';
 })
 export class ShippingComponent {
 
-  constructor(private cartService: CartService) { }
+  constructor(private cartService: CartService) { 
+   this.shippingCosts = this.cartService.getGastosEnvio();
+  
+   this.cartService.getGastosEnvio().subscribe(resultado => {
+     console.log("que devuelvo", resultado)
+   })
+  }
 
-  //shippingCosts = ;
+  shippingCosts:Observable<any>;
 }

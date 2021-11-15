@@ -15,8 +15,12 @@ export class AnimeService {
   constructor(private http: HttpClient) { }
 
   getAnimeList(title: string): Observable<Anime[]> {
+    if(title.length<3){
+      throw new Error("Insuficiencia de string")
+    }
     return this.http.get<Anime[]>(`${this.REST_API_SERVER}/search/anime?q=${encodeURIComponent(title)}`).pipe(
       map((data: any) => {
+        // debugger;
         console.log(data.results);
         return data.results.filter((filter: { rated: string; }) => filter.rated !== 'Rx');
       })
