@@ -8,7 +8,19 @@ import { Game } from '../../interfaces/game.interface';
 })
 export class GameAlertsComponent {
 
-  @Input() game!: Game;
+  @Input("game") game: Game ={
+    cheapest:0,
+    external:"",
+    gameID:0,
+    thumb:""
+  };
 
-  constructor() { }
+  alertaGame(game:Game){
+    
+    alert(JSON.stringify(game));
+  }
+
+  constructor() {
+    console.log("el game del constructor, vacío",this.game)
+   }
 }
