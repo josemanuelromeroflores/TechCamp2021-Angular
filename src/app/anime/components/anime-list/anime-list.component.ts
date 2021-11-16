@@ -13,6 +13,7 @@ import { AnimeService } from '../../services/anime.service';
 export class AnimeListComponent implements OnInit {
 
   animeList: Anime[] = [];
+  listaanime: boolean = true;
   titleSearch: string = '';
 
   constructor(private route: ActivatedRoute,
@@ -34,7 +35,13 @@ export class AnimeListComponent implements OnInit {
   }
 
   searchAnimeList() {
-    
+    this.titleSearch = this.checkoutForm.value.title;
+    this.animeService.getAnimeList(this.titleSearch).subscribe((data: Anime[]) => {
+      console.log(data);
+      this.animeList = data;
+      if (this.animeList.length>0){this.listaanime=false;}
+      else{this.listaanime=true;}
+    });
   }
 
   addToCart(anime: Anime) {

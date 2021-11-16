@@ -16,7 +16,7 @@
     <col style="width:30%">
 	<col style="width:10%">
     <col style="width:10%">
-    <thead class="black white-text">
+    <thead [style.visibility]="listagame ? 'hidden': 'visible'" class="black white-text">
         <tr>
             <th> Título </th>
             <th> Precio </th>
@@ -32,10 +32,10 @@
                     {{ game.external }}
                 </a>
             </td>
-            <td style="text-align: center;"></td>
+            <td style="text-align: center;">{{ game.cheapest | currency: 'EUR'}}</td>
             <td style="text-align: center;">
                 <game-alerts
-                    [game]="game">
+                    [game]="game" (notify)="onNotify()">
                 </game-alerts>
             </td>
             <td style="text-align: center;">

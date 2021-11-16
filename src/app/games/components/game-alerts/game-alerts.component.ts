@@ -9,6 +9,7 @@ import { Game } from '../../interfaces/game.interface';
 export class GameAlertsComponent {
 
   @Input() game!: Game;
+  @Output() notify = new EventEmitter();
 
   constructor() { }
 }

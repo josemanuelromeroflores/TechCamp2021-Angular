@@ -14,10 +14,12 @@ import { GameService } from '../../services/game.service';
 export class GameListComponent implements OnInit{
   
   games: Game[] = [];
+  listagame: boolean = true;
   titleSearch: string = '';
 
   constructor(private route: ActivatedRoute,
     private gameService: GameService,
+    private cartService: CartService,
     private formBuilder: FormBuilder) { }
   
   checkoutForm = this.formBuilder.group({
@@ -38,6 +40,8 @@ export class GameListComponent implements OnInit{
     this.gameService.getGames(this.titleSearch).subscribe((data: Game[]) => {
       console.log(data);
       this.games = data;
+      if (this.games.length>0){this.listagame=false;}
+      else{this.listagame=true;}
     });
   }
 
@@ -46,6 +50,7 @@ export class GameListComponent implements OnInit{
   }
 
   addToCart(game: Game) {
+    this.cartService.addToCart({ title: game.external, price: game.cheapest });
     window.alert(`El producto ${game.external} ha sido añadido a la cesta!`);
   }
 }
