@@ -1,7 +1,8 @@
+import { CartService } from './../../../shared/services/cart.service';
+import { CartProduct } from './../../../shared/interfaces/cart-product.interface';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { CartService } from 'src/app/shared/services/cart.service';
 
 import { Game } from '../../interfaces/game.interface';
 import { GameService } from '../../services/game.service';
@@ -18,15 +19,16 @@ export class GameListComponent implements OnInit{
 
   constructor(private route: ActivatedRoute,
     private gameService: GameService,
-    private formBuilder: FormBuilder) { }
+    private formBuilder: FormBuilder,
+    private cartService: CartService) { }
   
   checkoutForm = this.formBuilder.group({
     title: ''
   });
 
   ngOnInit(): void {
-    this.checkoutForm.value.title = '';
-
+    this.checkoutForm.value.title = this.route.snapshot.queryParamMap.get('text') || '';
+    
     if(this.checkoutForm.value.title !== '')
     {
       this.searchGames();
@@ -46,6 +48,7 @@ export class GameListComponent implements OnInit{
   }
 
   addToCart(game: Game) {
+    this.cartService.addToCart({title : game.external, price: game.cheapest});
     window.alert(`El producto ${game.external} ha sido añadido a la cesta!`);
   }
 }

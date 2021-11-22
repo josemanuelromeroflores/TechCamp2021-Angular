@@ -1,3 +1,4 @@
+import { GameService } from './../../services/game.service';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Game } from '../../interfaces/game.interface';
 
@@ -6,9 +7,10 @@ import { Game } from '../../interfaces/game.interface';
   templateUrl: './game-alerts.component.html',
   styleUrls: ['./game-alerts.component.css']
 })
-export class GameAlertsComponent {
+export class GameAlertsComponent{
 
   @Input() game!: Game;
-
-  constructor() { }
+  @Output() notify = new EventEmitter();
+  constructor() {
+  }
 }

@@ -11,12 +11,12 @@
     <button class="button inline" type="submit">Buscar</button>
 </form>
 
-<table mdbTable>
+<table mdbTable *ngIf="animeList.length > 1">
     <col style="width:60%">
     <col style="width:30%">
 	<col style="width:10%">
     <col style="width:10%">
-    <thead class="black white-text">
+    <thead class="black white-text" >
         <tr>
             <th> Título </th>
             <th> Punt. </th>

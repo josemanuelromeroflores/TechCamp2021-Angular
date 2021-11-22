@@ -34,7 +34,12 @@ export class AnimeListComponent implements OnInit {
   }
 
   searchAnimeList() {
-    
+    this.titleSearch = this.checkoutForm.value.title;
+    this.animeService.getAnimeList(this.titleSearch).subscribe((data: Anime[])=>{
+      console.log(data);
+      this.animeList = data;
+    })
+   
   }
 
   addToCart(anime: Anime) {

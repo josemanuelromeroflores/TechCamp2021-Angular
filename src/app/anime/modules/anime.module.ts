@@ -17,4 +17,5 @@ import { AnimeDetailsComponent } from '../components/anime-details/anime-details
     ])
   ]
 })
-export class AnimeModule { }
+export class AnimeModule { 
+}

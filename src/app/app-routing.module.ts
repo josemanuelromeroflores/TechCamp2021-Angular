@@ -1,3 +1,4 @@
+import { PageNotFoundComponent } from './shared/components/page-not-found/page-not-found.component';
 import { CartComponent } from './shared/components/cart/cart.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -8,7 +9,8 @@ const routes: Routes = [ // El orden importa!!!
     { path: 'anime', loadChildren: () => import('./anime/modules/anime.module').then(m => m.AnimeModule) },
     { path: 'cart',  component: CartComponent },
     { path: 'shipping', component: ShippingComponent },
-    { path: '', redirectTo: '/games', pathMatch: 'full' }
+    { path: '', redirectTo: '/games', pathMatch: 'full' },
+    { path: '**', component: PageNotFoundComponent }
 ];
 
 @NgModule({

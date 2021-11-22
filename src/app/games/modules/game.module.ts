@@ -19,4 +19,5 @@ import { GameDetailsComponent } from '../components/game-details/game-details.co
     ])
   ]
 })
-export class GameModule { }
+export class GameModule {
+}

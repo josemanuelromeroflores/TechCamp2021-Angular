@@ -22,7 +22,8 @@ export class GameDetailsComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
     private gameService: GameService,
-    private storeService: StoreService) { 
+    private storeService: StoreService,
+    private cartService: CartService) { 
 
       this.storeService.getStores().subscribe((data: any) => {
         console.log(data);
@@ -50,9 +51,12 @@ export class GameDetailsComponent implements OnInit {
         });
       });
     });
+    this.textSearch = this.route.snapshot.queryParamMap.get('text') || '';
   }
 
   addToCart(game: Game) {
+    this.cartService.addToCart({title : game.external, price: game.cheapest});
     window.alert(`El producto ${game.external} ha sido añadido a la cesta!`);
   }
+  
 }
