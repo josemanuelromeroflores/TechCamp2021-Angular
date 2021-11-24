@@ -27,7 +27,7 @@ export class GameListComponent implements OnInit{
   });
 
   ngOnInit(): void {
-    this.checkoutForm.value.title = '';
+    this.checkoutForm.value.title = this.route.snapshot.queryParamMap.get('text') || '';
 
     if(this.checkoutForm.value.title !== '')
     {

@@ -51,6 +51,7 @@ export class GameDetailsComponent implements OnInit {
         });
       });
     });
+    this.textSearch = this.route.snapshot.queryParamMap.get('text') || '';
   }
 
   addToCart(game: Game) {
