@@ -5,7 +5,7 @@ import { Anime } from '../../interfaces/anime.interface';
 import { AnimeService } from '../../services/anime.service';
 
 @Component({
-  selector: 'app-anime-details',
+  selector: 'anime-details',
   templateUrl: './anime-details.component.html',
   styleUrls: ['./anime-details.component.css']
 })
@@ -20,7 +20,7 @@ export class AnimeDetailsComponent implements OnInit {
 
   ngOnInit() {
     const animeIdFromRoute = Number(this.route.snapshot.paramMap.get('animeId'));
-    this.animeService.getAnimeById(animeIdFromRoute).subscribe((data: Anime) => {
+    this.animeService.getAnimeById(animeIdFromRoute).subscribe((data: any) => {
       console.log(data);
       this.anime = data;
     });

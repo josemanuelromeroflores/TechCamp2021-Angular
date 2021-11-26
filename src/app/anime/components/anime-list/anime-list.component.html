@@ -11,7 +11,7 @@
     <button class="button inline" type="submit">Buscar</button>
 </form>
 
-<table mdbTable>
+<table mdbTable *ngIf="titleSearch.length>0">
     <col style="width:60%">
     <col style="width:30%">
 	<col style="width:10%">
@@ -31,7 +31,7 @@
                     style="color: white;"
                     [routerLink]="['/anime', anime.mal_id]"
                     [queryParams]="{text: titleSearch}">
-                    {{ anime.title }}
+                        {{ anime.title }}
                 </a>
             </td>
             <td style="text-align: center;">{{ anime.score }}</td>

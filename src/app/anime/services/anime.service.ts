@@ -15,7 +15,7 @@ export class AnimeService {
   constructor(private http: HttpClient) { }
 
   getAnimeList(title: string): Observable<Anime[]> {
-    return this.http.get<Anime[]>(`${this.REST_API_SERVER}/search/anime?q=${encodeURIComponent(title)}`).pipe(
+    return this.http.get<Anime[]>(`${this.REST_API_SERVER}/search/anime?q=${title}`).pipe(
       map((data: any) => {
         console.log(data.results);
         return data.results.filter((filter: { rated: string; }) => filter.rated !== 'Rx');
@@ -31,10 +31,11 @@ export class AnimeService {
   }
 
   getAnimeById(id: number): Observable<any> {
-    return this.http.get(`${this.REST_API_SERVER}/anime/${id}`).pipe(map((data: any) => {
+    return this.http.get(`${this.REST_API_SERVER}?id=${id}`).pipe(map((data: any) => {
       console.log(data);
       return {
-        mal_id: id,
+        anime:{
+          mal_id: id,
         url: data.url,
         image_url: data.image_url,
         title: data.title,
@@ -42,6 +43,7 @@ export class AnimeService {
         episodes: data.episodes,
         score: data.score,
         rated: data.rating
+        }
       }
     }));
   }

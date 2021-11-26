@@ -11,7 +11,7 @@
     <button class="button inline" type="submit">Buscar</button>
 </form>
 
-<table mdbTable>
+<table mdbTable *ngIf="titleSearch.length>0">
     <col style="width:60%">
     <col style="width:30%">
 	<col style="width:10%">
@@ -20,22 +20,25 @@
         <tr>
             <th> Título </th>
             <th> Precio </th>
-            <th></th>
+            <th>Notifícame</th>
             <th></th>
         </tr>
     </thead>
     <tbody>
         <tr mdbTableCol *ngFor="let game of games">
             <td>
-                <a [title]="game.external" style="color: white;"
-                    [routerLink]="['/games', game.gameID]" [queryParams]="{text: titleSearch}">
+                <a [title]="game.external" 
+                style="color: white;"
+                [routerLink]="['/games', game.gameID]" 
+                [queryParams]="{text: titleSearch}">
                     {{ game.external }}
                 </a>
             </td>
-            <td style="text-align: center;"></td>
+            <td style="text-align: center;">{{ (game.cheapest ) | currency: 'EUR'}}</td>
             <td style="text-align: center;">
                 <game-alerts
-                    [game]="game">
+                    [game]="game"
+                    (click)="onNotify(game)">
                 </game-alerts>
             </td>
             <td style="text-align: center;">
