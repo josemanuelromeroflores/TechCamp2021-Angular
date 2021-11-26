@@ -4,7 +4,11 @@
     <a routerLink="/shipping">Gastos de envío</a>
 </p>
 
-<ng-template [ngIf]="items.length > 0" [ngIfElse]="noItems">
+<ng-container *ngIf="items.length > 0; then cartItems; else noItems">
+</ng-container >
+
+
+<ng-template #cartItems>
 
     <div class="cart-item" *ngFor="let item of items">
         <span class="margin">{{ item.title }}</span>
@@ -31,6 +35,7 @@
         </div>
         <button class="button" type="submit">Comprar</button>
     </form>
+
 </ng-template>
 
 <ng-template #noItems>

@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { CartService } from 'src/app/shared/services/cart.service';
 
 import { Game } from '../../interfaces/game.interface';
 import { GameService } from '../../services/game.service';
 
+import { CartProduct } from 'src/app/shared/interfaces/cart-product.interface';
+import { CartService } from 'src/app/shared/services/cart.service';
 @Component({
   selector: 'game-list',
   templateUrl: './game-list.component.html',
@@ -15,9 +16,9 @@ export class GameListComponent implements OnInit{
   
   games: Game[] = [];
   titleSearch: string = '';
-
   constructor(private route: ActivatedRoute,
     private gameService: GameService,
+    private cartService: CartService,   
     private formBuilder: FormBuilder) { }
   
   checkoutForm = this.formBuilder.group({
@@ -42,10 +43,14 @@ export class GameListComponent implements OnInit{
   }
 
   onNotify() {
+    
     window.alert('Serás notificado cuando el juego se encuentre disponible');
   }
 
   addToCart(game: Game) {
+    
+  var cartProduct:CartProduct={title:game.external, price:game.cheapest};
+    this.cartService.addToCart(cartProduct);
     window.alert(`El producto ${game.external} ha sido añadido a la cesta!`);
   }
 }

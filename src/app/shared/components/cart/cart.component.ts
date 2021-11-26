@@ -8,10 +8,11 @@ import { CartService } from '../../services/cart.service';
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent {
+  
 
   items = this.cartService.getItems();
   total = this.cartService.getTotal();
-
+  
   checkoutForm = this.formBuilder.group({
     name: '',
     address: ''

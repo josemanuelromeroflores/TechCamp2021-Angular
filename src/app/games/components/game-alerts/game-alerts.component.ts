@@ -11,4 +11,8 @@ export class GameAlertsComponent {
   @Input() game!: Game;
 
   constructor() { }
+
+  showNotify(game: Game) {
+    window.alert(`Te avisaremos cuando ${game.external} esté disponible`);
+  }
 }

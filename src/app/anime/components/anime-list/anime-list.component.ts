@@ -14,7 +14,7 @@ export class AnimeListComponent implements OnInit {
 
   animeList: Anime[] = [];
   titleSearch: string = '';
-
+  gameTable = document.getElementById("gameTable");
   constructor(private route: ActivatedRoute,
     private animeService: AnimeService,
     private cartService: CartService,
@@ -29,12 +29,21 @@ export class AnimeListComponent implements OnInit {
 
     if(this.checkoutForm.value.title !== '')
     {
+      
+      this.gameTable?.style.display=="none";
       this.searchAnimeList();
+    }
+    else{
+      this.gameTable?.style.display=="block";
     }
   }
 
   searchAnimeList() {
-    
+    this.titleSearch = this.checkoutForm.value.title;
+    this.animeService.getAnimeList(this.titleSearch).subscribe((data: Anime[]) => {
+      console.log(data);
+      this.animeList = data;
+    });
   }
 
   addToCart(anime: Anime) {
